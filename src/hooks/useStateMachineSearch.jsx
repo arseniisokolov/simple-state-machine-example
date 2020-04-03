@@ -5,24 +5,50 @@ export const useStateMachineSearch = (updateArticle, source) => {
 
     useEffect(() => {
         updateArticle(getFormatted(query));
-    }, [query])
+    }, [query]);
 
-    const findEntries = (query, source) => source.split(query).map(function (culm) {
-        return this.pos += culm.length + query.length
-    }, { pos: -query.length }).slice(0, -1);
+    const getFormatted = () => {
+        const result = [];
+        let state = 'outside';
+        let draft = '';
+        let letterIndex = 0;
 
-    const getFormatted = (value) => {
-        if (!value) {
-            return source;
+        const increment = (symbol) => {
+            draft += symbol;
+            letterIndex++;
+        };
+
+        const drop = () => {
+            draft = '';
+            letterIndex = 0;
         }
-        const entries = findEntries(value, source).map(i => ([i, i + value.length]));
-        if (!entries.length) {
-            return source;
+        const getHighlited = () => <b>{draft}</b>;
+
+        for (let i = 0; i < source.length; i++) {
+            const symbol = source[i];
+
+            switch (state) {
+                case 'outside':
+                    if (symbol === query[0]) {
+                        increment(symbol);
+                        state = 'inside'
+                    } else {
+                        result.push(symbol);
+                    };
+                    break;
+                case 'inside':
+                    if (symbol === query[letterIndex]) {
+                        increment(symbol);
+                    } else {
+                        result.push(draft.length === query.length ? getHighlited() : draft, symbol);
+                        drop();
+                        state = 'outside'
+                    }
+                    break;
+            }
         }
-        return entries.reduce((acc, curr, index) => {
-            return [...acc, source.slice(entries[index - 1] ? entries[index - 1][1] : 0, curr[0]), <b>{source.slice(curr[0], curr[1])}</b>];
-        }, []).concat([source.slice(entries[entries.length - 1][1])]);
-    }
+        return result;
+    };
 
     return updateQuery;
 }
