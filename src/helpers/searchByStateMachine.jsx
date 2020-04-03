@@ -3,6 +3,7 @@ export const searchByStateMachine = (query, source, highlightCallback) => {
     let state = 'outside';
     let draft = '';
     let letterIndex = 0;
+    let counter = 0;
 
     const increment = (symbol) => {
         draft += symbol;
@@ -30,7 +31,13 @@ export const searchByStateMachine = (query, source, highlightCallback) => {
                 if (symbol === query[letterIndex]) {
                     increment(symbol);
                 } else {
-                    result.push(draft.length === query.length ? highlightCallback(draft) : draft, symbol);
+                    if (draft.length === query.length) {
+                        result.push(highlightCallback(draft));
+                        counter++;
+                    } else {
+                        result.push(draft);
+                    }
+                    result.push(symbol);
                     drop();
                     state = 'outside'
                 }
@@ -38,5 +45,5 @@ export const searchByStateMachine = (query, source, highlightCallback) => {
         }
     }
 
-    return result;
+    return [counter, result];
 }
