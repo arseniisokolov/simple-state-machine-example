@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { FunctionalSearchForm } from '../FunctionalSearchForm';
+import { useFunctionalSearch } from '../../hooks/useFunctionalSearch';
+import { useStateMachineSearch } from '../../hooks/useStateMachineSearch';
+import { SearchForm } from '../SearchForm';
 
 export const Article = ({ children }) => {
-
-    const [article, formatArticle] = useState(children);
+    const [article, updateArticle] = useState(children);
+    const updateByFunctionally = useFunctionalSearch(updateArticle, children);
+    const updateByStateMachine = useStateMachineSearch(updateArticle, children);
 
     return (
         <>
-            <FunctionalSearchForm source={children} onUpdate={formatArticle} />
-            {/* <SearchForm onChange={updateQuery} />
-            <SearchForm onChange={updateQuery} /> */}
+            <SearchForm onUpdate={updateByFunctionally} />
+            <SearchForm onUpdate={updateByStateMachine} />
             <article>
                 {article}
             </article>
