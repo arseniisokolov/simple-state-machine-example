@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import _ from 'lodash';
+import { useDebouncedInput } from './useDebouncedInput';
 
 export const SearchForm = ({ onUpdate }) => {
 
-    const [query, updateQuery] = useState('');
-
-    useEffect(() => {
-        onUpdate(query);
-    }, [query]);
+    const [value, update] = useDebouncedInput(onUpdate);
 
     return (
         <form>
-            <input placeholder='Например, COVID-19' value={query} onChange={({ target: { value } }) => updateQuery(value)} />
+            <input placeholder='Например, COVID-19' value={value} onChange={({ target: { value } }) => update(value)} />
         </form>
     );
 };
