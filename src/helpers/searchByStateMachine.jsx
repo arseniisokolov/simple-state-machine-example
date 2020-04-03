@@ -37,5 +37,6 @@ export const searchByStateMachine = (query, source, highlightCallback) => {
                 break;
         }
     }
+
     return result;
 }
