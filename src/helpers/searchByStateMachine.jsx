@@ -5,15 +5,17 @@ export const searchByStateMachine = (query, source, highlightCallback) => {
     let letterIndex = 0;
     let counter = 0;
 
-    const increment = (symbol) => {
+    const addToDraft = (symbol) => {
         draft += symbol;
         letterIndex++;
     };
 
-    const drop = () => {
+    const dropDraft = () => {
         draft = '';
         letterIndex = 0;
     }
+
+    const switchState = (newState) => state = newState;
 
     for (let i = 0; i < source.length; i++) {
         const symbol = source[i];
@@ -21,26 +23,26 @@ export const searchByStateMachine = (query, source, highlightCallback) => {
         switch (state) {
             case 'outside':
                 if (symbol === query[0]) {
-                    increment(symbol);
-                    state = 'inside'
-                } else {
-                    result.push(symbol);
-                };
+                    addToDraft(symbol);
+                    switchState('inside');
+                    continue;
+                }
+                result.push(symbol);
                 break;
             case 'inside':
                 if (symbol === query[letterIndex]) {
-                    increment(symbol);
-                } else {
-                    if (draft.length === query.length) {
-                        result.push(highlightCallback(draft));
-                        counter++;
-                    } else {
-                        result.push(draft);
-                    }
-                    result.push(symbol);
-                    drop();
-                    state = 'outside'
+                    addToDraft(symbol);
+                    continue;
                 }
+                if (draft.length === query.length) {
+                    result.push(highlightCallback(draft));
+                    counter++;
+                } else {
+                    result.push(draft);
+                }
+                result.push(symbol);
+                dropDraft();
+                switchState('outside');
                 break;
         }
     }
