@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HighlightedPhrase } from '../HighlightedPhrase';
+import { HighlightedPhrase } from '../components/HighlightedPhrase';
 
 export const useSearch = (updateArticle, updateTiming, updateCounter, source, searcher) => {
     const [query, updateQuery] = useState('');
@@ -12,7 +12,7 @@ export const useSearch = (updateArticle, updateTiming, updateCounter, source, se
 
     const updateSearch = () => {
         const start = performance.now();
-        const [count, article] = searcher(query, source, (value) => <HighlightedPhrase>{value}</HighlightedPhrase>);
+        const [count, article] = searcher(query, source, (value) => <HighlightedPhrase phrase={value} />);
         updateCounter(count);
         updateArticle(article);
         updateTiming([start, performance.now()]);

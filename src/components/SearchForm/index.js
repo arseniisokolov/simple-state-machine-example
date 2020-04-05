@@ -1,6 +1,5 @@
 import React from 'react'
-import _ from 'lodash';
-import { useDebouncedInput } from './useDebouncedInput';
+import { useDebouncedInput } from '../../hooks/useDebouncedInput';
 
 export const SearchForm = ({ onUpdate }) => {
 

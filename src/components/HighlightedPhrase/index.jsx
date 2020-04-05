@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const HighlightedPhrase = ({ children }) => {
+export const HighlightedPhrase = ({ phrase }) => {
     return (
-        <b>{children}</b>
+        <span className='article__highlighted-phrase'>{phrase}</span>
     );
 };

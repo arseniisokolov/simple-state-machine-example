@@ -1,0 +1,12 @@
+.article {
+
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre;
+    
+    &__highlighted-phrase {
+        background-color: #0df3e8;
+        color: #464646;
+        border-radius: 2px;
+    }
+}
