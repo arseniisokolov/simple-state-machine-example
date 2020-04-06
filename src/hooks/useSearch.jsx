@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { HighlightedPhrase } from '../components/HighlightedPhrase';
 
-export const useSearch = (updateArticle, updateTiming, updateCounter, source, searcher) => {
+export const useSearch = (updateArticle, updateStatistics, source, searcher) => {
     const [query, updateQuery] = useState('');
 
+    const formatFloat = value => Math.floor(value * 100) / 100;
+
     const dropSearch = () => {
-        updateCounter(null);
         updateArticle(source);
-        updateTiming([null, null]);
+        updateStatistics([null, null]);
     }
 
     const updateSearch = () => {
         const start = performance.now();
         const [count, article] = searcher(query, source, (value) => <HighlightedPhrase phrase={value} />);
-        updateCounter(count);
         updateArticle(article);
-        updateTiming([start, performance.now()]);
+        updateStatistics([count, formatFloat(performance.now() - start)]);
     }
 
     useEffect(() => query ? updateSearch() : dropSearch(), [query]);

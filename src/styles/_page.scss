@@ -6,11 +6,32 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
+    &__header {
+        padding: 20px 0;
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 36px;
+        line-height: 50px;
+        color: $bricks-ut;
+    }
+
     &__container {
         position: relative;
         width: 1076px;
         margin: 0 auto;
-        padding-left: 30px;
-        padding-right: 30px;
+        padding: 20px 30px;
+    }
+
+    &__search-container {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+    }
+
+    &__searchform:not(:last-of-type) {
+        margin-bottom: 10px;
     }
 }

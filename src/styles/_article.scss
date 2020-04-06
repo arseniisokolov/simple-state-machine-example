@@ -1,12 +1,13 @@
 .article {
 
     font-size: 14px;
-    line-height: 1.5;
-    white-space: pre;
+    line-height: 24px;
+    white-space: pre-line;
+    color: $bricks-ut;
     
     &__highlighted-phrase {
         background-color: #0df3e8;
-        color: #464646;
+        color: $bricks-re;
         border-radius: 2px;
     }
 }
