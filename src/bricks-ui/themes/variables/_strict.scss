@@ -1,0 +1,20 @@
+
+// Basic Theme colors
+$bricks-ut: #252525;
+$bricks-brand: rgb(71, 21, 21);
+$bricks-nav: #0f71a1;
+$bricks-danger: rgb(241, 67, 36);
+$bricks-lucky: rgb(104, 206, 143);
+$bricks-warning: rgb(231, 217, 20);
+
+/* Basic white and black */
+$bricks-super-dark: hsl(hue($bricks-ut), 0%, 5%);
+$bricks-super-light: hsl(0, 0%, 100%);
+
+/* 🎶🎶 of gray */
+$bricks-re: hsl(hue($bricks-ut) + 5, saturation($bricks-ut) - 5, lightness($bricks-ut) + 25);
+$bricks-mi: hsl(hue($bricks-ut) + 5, saturation($bricks-ut) - 10, lightness($bricks-ut) + 47);
+$bricks-fa: hsl(hue($bricks-ut) + 0, saturation($bricks-ut) - 10, lightness($bricks-ut) + 57);
+$bricks-sol: hsl(hue($bricks-ut) + 0, saturation($bricks-ut) - 10, lightness($bricks-ut) + 67);
+$bricks-la: hsl(hue($bricks-ut) + 5, saturation($bricks-ut) - 7, lightness($bricks-ut) + 72);
+$bricks-si: hsl(hue($bricks-ut) + 0, saturation($bricks-ut) - 10, lightness($bricks-ut) + 77);

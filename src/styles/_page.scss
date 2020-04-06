@@ -1,0 +1,47 @@
+.page {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &__header {
+        display: flex;
+        align-items: baseline;
+        padding: 20px 0;
+        margin-bottom: 40px;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 36px;
+        line-height: 50px;
+        color: $bricks-ut;
+        width: 33%;
+    }
+
+    &__subtitle {
+        margin: 0;
+        font-size: 20px;
+        line-height: 30px;
+        color: $bricks-re;
+    }
+
+    &__container {
+        position: relative;
+        width: 1076px;
+        margin: 0 auto;
+        padding: 20px 30px;
+    }
+
+    &__search-container {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        min-height: 90px;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $bricks-fa;
+    }
+}

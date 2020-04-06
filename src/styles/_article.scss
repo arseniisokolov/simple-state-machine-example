@@ -1,0 +1,13 @@
+.article {
+
+    font-size: 14px;
+    line-height: 24px;
+    white-space: pre-line;
+    color: $bricks-ut;
+    
+    &__highlighted-phrase {
+        background-color: $bricks-brand;
+        color: $bricks-re;
+        border-radius: 2px;
+    }
+}

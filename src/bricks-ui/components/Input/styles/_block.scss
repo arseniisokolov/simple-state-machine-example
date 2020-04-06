@@ -1,0 +1,13 @@
+.bricks-input {
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid $bricks-fa;
+    background-color: $bricks-super-light;
+    border-radius: 4px;
+    color: $bricks-ut;
+
+    &::placeholder {
+        color: $bricks-mi;
+        text-overflow: ellipsis;
+    }
+}

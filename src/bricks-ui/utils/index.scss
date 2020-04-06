@@ -1,0 +1,42 @@
+@mixin helper-visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    padding: 0;
+    margin: 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+
+    &::before, &::after {
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: 0;
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+    }
+}
+
+@mixin custom-scrollbar {
+    scrollbar-color: $bricks-fa $bricks-la;
+    scrollbar-width: thin;
+    cursor: default;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $bricks-la;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $bricks-fa; 
+    }
+}

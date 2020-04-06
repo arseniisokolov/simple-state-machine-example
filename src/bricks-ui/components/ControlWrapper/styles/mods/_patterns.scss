@@ -1,0 +1,22 @@
+.bricks-control-wrapper {
+    &_common {
+        .bricks-control-wrapper__content {
+            margin-top: 5px;
+        }
+    }
+
+    &_flat {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+
+        .bricks-control-wrapper__caption {
+            margin-right: 20px;
+            flex-basis: 35%;
+        }
+
+        .bricks-control-wrapper__content {
+            flex-basis: 65%;
+        }
+    }
+}

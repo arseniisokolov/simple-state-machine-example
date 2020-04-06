@@ -1,0 +1,34 @@
+.bricks-input {
+    &_readonly {
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        width: auto;
+    }
+
+    &_full-width {
+        width: 100%;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $bricks-brand;
+    }
+
+    &_has-error {
+        border-color: $bricks-danger;
+    }
+
+    &_has-error.bricks-input_readonly {
+        color: $bricks-danger;
+    }
+
+    &:disabled {
+        border-color: $bricks-fa;
+        background-color: $bricks-la;
+        cursor: not-allowed;
+        color: $bricks-fa;
+        -webkit-text-fill-color: $bricks-fa; /* required on Safari */
+        opacity: 1; /* required on iOS */
+    }
+}

@@ -1,0 +1,43 @@
+.bricks-control-wrapper {
+    &_md {
+        .bricks-control-wrapper__caption {
+            font-size: 12px;
+            line-height: 20px;
+        }
+
+        .bricks-control-wrapper__hint {
+            height: 20px;
+            margin-left: 2px;
+        }
+
+        .bricks-control-wrapper__message {
+            font-size: 12px;
+            line-height: 20px;
+    
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+    
+    &_lg {
+        .bricks-control-wrapper__caption {
+            font-size: 13px;
+            line-height: 24px;
+        }
+
+        .bricks-control-wrapper__hint {
+            height: 20px;
+            margin-left: 2px;
+        }
+
+        .bricks-control-wrapper__message {
+            font-size: 13px;
+            line-height: 20px;
+    
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}

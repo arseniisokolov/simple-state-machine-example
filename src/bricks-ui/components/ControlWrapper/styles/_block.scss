@@ -1,0 +1,51 @@
+.bricks-control-wrapper {
+    position: relative;
+    color: $bricks-ut;
+    fill: $bricks-ut;
+    width: 100%;
+    box-sizing: border-box;
+    
+    * {
+        box-sizing: border-box;
+    }
+}
+
+.bricks-control-wrapper {
+    &__caption {
+        display: inline-block;
+        color: $bricks-re;
+    }
+
+    &__content > * {
+        margin-bottom: 5px;
+    }
+
+    &__hint {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &__hint-icon {
+        fill: $bricks-re;
+    }
+
+    &__required-sign {
+        display: inline;
+        color: $bricks-brand;
+        margin-left: .3em;
+    }
+
+    &__message-list {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+    
+    &__message_warning {
+        color: $bricks-danger;
+    }
+
+    &__message_help {
+        color: $bricks-re;
+    }
+}
