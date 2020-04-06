@@ -10,6 +10,10 @@ export class Searcher {
     letterIndex = 0;
     counter = 0;
 
+    get currentLetter() {
+        return this.query[this.letterIndex];
+    }
+
     constructor(state, query, source, highlightCallback) {
         this.query = query;
         this.source = source;
@@ -29,6 +33,15 @@ export class Searcher {
     search() {
         [...this.source].forEach(symbol => this.handleLetter(symbol));
         return [this.counter, this.result];
+    }
+
+    addDraftToResult(symbol, withHighlight) {
+        const handledDraft = withHighlight ? this.highlightCallback(this.draft) : this.draft;
+        this.result.push(handledDraft, symbol);
+    }
+
+    isQueryFound() {
+        return this.draft.length === this.query.length;
     }
 
 }
@@ -59,9 +72,9 @@ class StateOutside extends State {
         if (symbol === this.context.query[0]) {
             this.addToDraft(symbol);
             this.context.switchStateTo(new StateInside());
-        } else {
-            this.context.result.push(symbol);
-        };
+            return;
+        }
+        this.context.result.push(symbol);
     }
 
 }
@@ -69,20 +82,18 @@ class StateOutside extends State {
 class StateInside extends State {
 
     handleLetter(symbol) {
-        if (symbol === this.context.query[this.context.letterIndex]) {
+        if (symbol === this.context.currentLetter) {
             this.addToDraft(symbol);
-        } else {
-            if (this.context.draft.length === this.context.query.length) {
-                this.context.result.push(this.context.highlightCallback(this.context.draft));
-                console.log(this.context.result);
-                this.context.counter++;
-            } else {
-                this.context.result.push(this.context.draft);
-            }
-            this.context.result.push(symbol);
-            this.dropDraft();
-            this.context.switchStateTo(new StateOutside());
+            return;
         }
+        if (this.context.isQueryFound()) {
+            this.context.addDraftToResult(symbol, true);
+            this.context.counter++;
+        } else {
+            this.context.addDraftToResult(symbol, false);
+        }
+        this.dropDraft();
+        this.context.switchStateTo(new StateOutside());
     }
 
 }

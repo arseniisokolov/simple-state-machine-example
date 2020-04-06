@@ -33,7 +33,7 @@ export const App = () => {
             mix='page__searchform'
           />
           <SearchForm
-            aption='Ищем с помощью ООП'
+            caption='Ищем с помощью ООП'
             article={ARTICLE_EXAMPLE}
             onUpdateArticle={highlightArticle}
             searchBy={Searcher.search}

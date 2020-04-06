@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input, ControlWrapper, Icons, Icon } from '../../bricks';
-import { useDebouncedInput } from '../../hooks/useDebouncedInput';
+import { useDebounce } from '../../hooks/useDebounce';
 import { useSearch } from '../../hooks/useSearch';
 import { generateBemCls } from '../../bricks/utils';
 
@@ -8,7 +8,7 @@ export const SearchForm = ({ article, onUpdateArticle, searchBy, mix, caption })
 
     const [[count, time], updateStatistics] = useState([null, null]);
     const updateArticleByFunctional = useSearch(onUpdateArticle, updateStatistics, article, searchBy);
-    const [value, onUpdate] = useDebouncedInput(updateArticleByFunctional);
+    const [value, onUpdate] = useDebounce(updateArticleByFunctional);
 
     const formCls = generateBemCls({ block: 'searchform', mix });
 
@@ -27,7 +27,7 @@ export const SearchForm = ({ article, onUpdateArticle, searchBy, mix, caption })
                 mix='searchform__searcher'
                 tips={[statisticsMessage]}
             >
-                <Input size='lg' placeholder='Например, COVID-19' value={value} onChange={onUpdate}>
+                <Input size='xl' placeholder='Например, COVID-19' value={value} onChange={onUpdate}>
                     <Icon>{Icons.Search}</Icon>
                 </Input>
             </ControlWrapper>

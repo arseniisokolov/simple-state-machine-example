@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const useDebouncedInput = (onUpdate) => {
+export const useDebounce = (onUpdate) => {
     const [value, updateValue] = useState('');
 
     useEffect(() => {
