@@ -4,17 +4,17 @@ import { useDebouncedInput } from '../../hooks/useDebouncedInput';
 import { useSearch } from '../../hooks/useSearch';
 import { generateBemCls } from '../../bricks/utils';
 
-export const SearchForm = ({ article, onUpdateArticle, searcher, mix }) => {
+export const SearchForm = ({ article, onUpdateArticle, searchBy, mix, caption }) => {
 
     const [[count, time], updateStatistics] = useState([null, null]);
-    const updateArticleByFunctional = useSearch(onUpdateArticle, updateStatistics, article, searcher);
+    const updateArticleByFunctional = useSearch(onUpdateArticle, updateStatistics, article, searchBy);
     const [value, onUpdate] = useDebouncedInput(updateArticleByFunctional);
 
     const formCls = generateBemCls({ block: 'searchform', mix });
 
     const statisticsMessage = [
-        typeof count === 'number' && `Найдено: ${count}`,
-        typeof count === 'number' && `Поиск занял: ${time} мс`
+        isFinite(count) && typeof count === 'number' && `Найдено: ${count}`,
+        isFinite(count) && typeof count === 'number' && `Поиск занял: ${time} мс`
     ].filter(Boolean).join('. ');
 
     return (
@@ -23,7 +23,7 @@ export const SearchForm = ({ article, onUpdateArticle, searcher, mix }) => {
                 pattern='common'
                 size='lg'
                 label='Введите фразу для поиска'
-                hint='Поиск в функциональном стиле'
+                hint={caption}
                 mix='searchform__searcher'
                 tips={[statisticsMessage]}
             >
@@ -31,10 +31,6 @@ export const SearchForm = ({ article, onUpdateArticle, searcher, mix }) => {
                     <Icon>{Icons.Search}</Icon>
                 </Input>
             </ControlWrapper>
-            {/* <div className='searchform__statistics'>
-                {count !== null && <span className='searchform__statistics-item'>Найдено: {count}</span>}
-                {time !== null && <span className='searchform__statistics-item'>Поиск занял: {time} мс</span>}
-            </div> */}
         </form>
     );
 };
