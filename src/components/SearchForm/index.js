@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Input, ControlWrapper, Icons, Icon } from '../../bricks';
+import { Input, ControlWrapper, Icons, Icon } from '../../bricks-ui';
 import { useDebounce } from '../../hooks/useDebounce';
 import { useSearch } from '../../hooks/useSearch';
-import { generateBemCls } from '../../bricks/utils';
+import { generateBemCls } from '../../bricks-ui/utils';
 
 export const SearchForm = ({ article, onUpdateArticle, searchBy, mix, caption }) => {
 

@@ -10,7 +10,7 @@
         display: flex;
         align-items: baseline;
         padding: 20px 0;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
     }
 
     &__title {
@@ -39,7 +39,9 @@
         display: flex;
         align-items: baseline;
         justify-content: space-between;
-        margin-bottom: 30px;
         min-height: 90px;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $bricks-fa;
     }
 }

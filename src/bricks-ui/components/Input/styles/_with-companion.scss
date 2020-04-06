@@ -1,0 +1,27 @@
+
+.bricks-input-with-companion {
+    display: inline-flex;
+    position: relative;
+
+    &__companion {
+        position: absolute;
+        right: 3px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: auto;
+        display: flex;
+        line-height: 1;
+        color: $bricks-brand;
+        fill: $bricks-brand;
+    }
+
+    &__companion_disabled {
+        color: $bricks-fa;
+        fill: $bricks-fa;
+        pointer-events: none;
+    }
+
+    &__input.bricks-input  {
+        padding-right: 34px;
+    }
+}

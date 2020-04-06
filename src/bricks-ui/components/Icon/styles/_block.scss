@@ -1,0 +1,12 @@
+.bricks-icon {
+    display: inline-block;
+    overflow: hidden;
+    box-sizing: border-box;
+    user-select: none;
+    touch-action: manipulation;
+    padding: 4px; 
+
+    svg {
+        transform: translateZ(0);
+    }
+}
