@@ -7,7 +7,7 @@ export const useSearch: UseSearchHookType = (updateArticle, updateStatistics, ar
 
     const formatFloat = (value: number): number => Math.floor(value * 100) / 100;
 
-    const highlightPhrase = (value: string): JSX.Element => <HighlightedPhrase phrase={value} />;
+    // const highlightPhrase = (value: string): JSX.Element => <HighlightedPhrase phrase={value} />;
 
     const dropSearch = () => {
         updateArticle(article);
@@ -16,9 +16,10 @@ export const useSearch: UseSearchHookType = (updateArticle, updateStatistics, ar
 
     const updateSearch = () => {
         const start = performance.now();
-        const [count, handledArticle] = searchBy(query, article, highlightPhrase);
-        updateArticle(handledArticle);
-        updateStatistics([count, formatFloat(performance.now() - start)]);
+        const handledArticle = searchBy(query, article);
+        console.log(handledArticle);
+        updateStatistics([handledArticle.length - 1, formatFloat(performance.now() - start)]);
+        updateArticle(handledArticle.reduce((acc, curr) => [...acc, curr, <HighlightedPhrase phrase={query} />], []));
     }
 
     useEffect(() => query ? updateSearch() : dropSearch(), [query]);

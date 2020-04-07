@@ -8,8 +8,8 @@ import { SearchFormPropsType } from '../types';
 export const SearchForm: React.FC<SearchFormPropsType> = ({ article, onUpdateArticle, searchBy, mix, caption }) => {
 
     const [[count, time], updateStatistics] = useState<[number | null, number | null]>([null, null]);
-    const updateArticleByFunctional = useSearch(onUpdateArticle, updateStatistics, article, searchBy);
-    const [value, onUpdate] = useDebounce(updateArticleByFunctional);
+    const searchInArticle = useSearch(onUpdateArticle, updateStatistics, article, searchBy);
+    const [value, onUpdate] = useDebounce(searchInArticle);
 
     const formCls: string = generateBemCls({ block: 'searchform', mix });
 

@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { SearchForm } from '../SearchForm';
 import { searchFunctionally } from '../../searchers/functionalSearcher';
 import { searchByStateMachine } from '../../searchers/stateMachineSearcher';
-import { Searcher } from '../../searchers/Searcher.class';
+// import { Searcher } from '../../searchers/Searcher.class';
 import { ARTICLE_EXAMPLE } from '../../constants';
 import { ArticleType } from '../../types';
 
 export const App: React.FC = () => {
 
-  const [highligtedArticle, highlightArticle] = useState<ArticleType>(ARTICLE_EXAMPLE);
+  const [highligtedArticle, highlightArticle] = useState<ArticleType>();
 
   return (
     <>
@@ -33,13 +33,13 @@ export const App: React.FC = () => {
             searchBy={searchByStateMachine}
             mix='page__searchform'
           />
-          <SearchForm
+          {/*   <SearchForm
             caption='Ищем с помощью ООП'
             article={ARTICLE_EXAMPLE}
             onUpdateArticle={highlightArticle}
             searchBy={Searcher.search}
             mix='page__searchform'
-          />
+          /> */}
         </div>
         <article className='page__article article'>
           {highligtedArticle}

@@ -1,11 +1,11 @@
-import { SearchState } from './Searcher.class';
-import { ArticleType } from '../types';
+// import { SearchState } from './Searcher.class';
+// import { ArticleType } from '../types';
 
-export type SearchStateType = 'inside' | 'outside';
+export type SearchStateType = 'beforeEnd' | 'afterEnd';
 
-export type SearcherType = (query: string, article: string, highlightCallback: (v: string) => JSX.Element) => [number, ArticleType];
+export type SearcherType = (query: string, article: string) => string[];
 
-export interface ISearchContext {
-    switchStateTo(state: SearchState): void;
-    handleSymbol(symbol: string): void;
-}
+// export interface ISearchContext {
+//     switchStateTo(state: SearchState): void;
+//     handleSymbol(symbol: string): void;
+// }
