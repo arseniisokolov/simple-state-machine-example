@@ -1,13 +1,14 @@
-import { SearcherType } from "./types";
+import React from 'react';
+import { SearcherType, SearchStateType } from "./types";
 
 export const searchByStateMachine: SearcherType = (query, source, highlightCallback) => {
-    const result = [];
-    let state = 'outside';
+    const result: JSX.Element[] = [];
+    let state = 'outside' as SearchStateType;
     let draft = '';
     let letterIndex = 0;
     let counter = 0;
 
-    const addToDraft = (symbol) => {
+    const addToDraft = (symbol: string) => {
         draft += symbol;
         letterIndex++;
     };
@@ -17,10 +18,11 @@ export const searchByStateMachine: SearcherType = (query, source, highlightCallb
         letterIndex = 0;
     }
 
-    const switchState = (newState) => state = newState;
+    const switchState = (newState: SearchStateType) => state = newState;
+    const addToResult = (value: string) => result.push(<>{value}</>);
 
     for (let i = 0; i < source.length; i++) {
-        const symbol = source[i];
+        const symbol: string = source[i];
 
         switch (state) {
             case 'outside':
@@ -29,7 +31,7 @@ export const searchByStateMachine: SearcherType = (query, source, highlightCallb
                     switchState('inside');
                     continue;
                 }
-                result.push(symbol);
+                result.push(<>{symbol}</>);
                 break;
             case 'inside':
                 if (symbol === query[letterIndex]) {
@@ -40,14 +42,14 @@ export const searchByStateMachine: SearcherType = (query, source, highlightCallb
                     result.push(highlightCallback(draft));
                     counter++;
                 } else {
-                    result.push(draft);
+                    addToResult(draft);
                 }
-                result.push(symbol);
+                addToResult(symbol);
                 dropDraft();
                 switchState('outside');
                 break;
         }
     }
 
-    return [counter, result as JSX.Element[]];
+    return [counter, result];
 }

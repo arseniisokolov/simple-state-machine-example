@@ -1,3 +1,4 @@
+import React from 'react';
 import { ISearchContext, SearcherType } from './types';
 
 export class Searcher implements ISearchContext {
@@ -6,7 +7,7 @@ export class Searcher implements ISearchContext {
         return new Searcher(new SearchOutsideState(), query, source, highlightCallback).runSearch();
     };
 
-    public _result = [];
+    public _result: JSX.Element[] = [];
     private _state: SearchState;
     private _letterIndex = 0;
     private _draft = '';
@@ -54,8 +55,8 @@ export class Searcher implements ISearchContext {
 
 
     public addDraftToResult(symbol: string, withHighlight: boolean) {
-        const handledDraft = withHighlight ? this._highlightCallback(this._draft) : this._draft;
-        this._result.push(handledDraft, symbol);
+        const handledDraft: JSX.Element = withHighlight ? this._highlightCallback(this._draft) : <>{this._draft}</>;
+        this._result.push(handledDraft, <>{symbol}</>);
     }
 
     public isQueryFound(): boolean {
@@ -67,7 +68,7 @@ export class Searcher implements ISearchContext {
     }
 
     public addToResult(value: string) {
-        this._result.push(value);
+        this._result.push(<>{value}</>);
     }
 
     private runSearch(): [number, JSX.Element[]] {

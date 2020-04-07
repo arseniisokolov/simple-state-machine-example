@@ -11,6 +11,8 @@
         "esModuleInterop": true,
         // enable strict null checks as a best practice
         "strictNullChecks": true,
+        // Process & infer types from .js files.
+        "allowJs": true
     },
     "include": [
         "./src/**/*"

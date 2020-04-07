@@ -5,7 +5,7 @@ export type UseSearchHookType =
     (
         updateArticle: UseStateDispatcherType<ArticleType>,
         updateStatistics: UseStateDispatcherType<[number | null, number | null]>,
-        article: ArticleType,
+        article: string,
         searchBy: SearcherType
     )
         => UseStateDispatcherType<string>;
