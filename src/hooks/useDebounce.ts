@@ -1,7 +1,8 @@
-import { useState, useEffect, SetStateAction, Dispatch } from 'react';
+import { useState, useEffect } from 'react';
+import { UseDebounceHookType } from './types';
 
-export function useDebounce<T>(onUpdate: Function): [T, Dispatch<SetStateAction<T>>] {
-    const [value, updateValue] = useState<T>();
+export const useDebounce: UseDebounceHookType = (onUpdate) => {
+    const [value, updateValue] = useState<any>();
 
     useEffect(() => {
         const timeout = setTimeout(() => onUpdate(value), 100);

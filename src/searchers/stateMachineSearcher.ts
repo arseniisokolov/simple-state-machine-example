@@ -1,4 +1,6 @@
-export const searchByStateMachine = (query, source, highlightCallback) => {
+import { SearcherType } from "./types";
+
+export const searchByStateMachine: SearcherType = (query, source, highlightCallback) => {
     const result = [];
     let state = 'outside';
     let draft = '';
@@ -47,5 +49,5 @@ export const searchByStateMachine = (query, source, highlightCallback) => {
         }
     }
 
-    return [counter, result];
+    return [counter, result as JSX.Element[]];
 }

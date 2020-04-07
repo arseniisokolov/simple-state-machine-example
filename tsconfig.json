@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "es6",
+        // Search under node_modules for non-relative imports.
+        "moduleResolution": "node",
+        "target": "esnext",
+        "jsx": "react",
+        // Import non-ES modules as default imports.
+        "esModuleInterop": true,
+        // enable strict null checks as a best practice
+        "strictNullChecks": true,
+    },
+    "include": [
+        "./src/**/*"
+    ]
+}

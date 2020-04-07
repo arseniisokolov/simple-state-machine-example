@@ -1,10 +1,10 @@
-import { ISearchContext } from './types';
+import { ISearchContext, SearcherType } from './types';
 
 export class Searcher implements ISearchContext {
 
-    public static search(query: string, source: string, highlightCallback: (v: string) => JSX.Element): [number, JSX.Element[]] {
+    public static search: SearcherType = (query, source, highlightCallback) => {
         return new Searcher(new SearchOutsideState(), query, source, highlightCallback).runSearch();
-    }
+    };
 
     public _result = [];
     private _state: SearchState;

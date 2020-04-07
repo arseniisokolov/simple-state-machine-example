@@ -1,11 +1,11 @@
 import { SearcherType } from "../searchers/types";
-import { ArticleType } from "../types";
+import { ArticleType, UseStateDispatcherType } from "../types";
 
 export type SearchFormPropsType = {
     article: ArticleType;
-    onUpdateArticle: (v: string) => string;
-    searchBy: SearcherType;
     caption: string;
+    onUpdateArticle: UseStateDispatcherType<ArticleType>;
+    searchBy: SearcherType;
     mix?: string;
 }
 
