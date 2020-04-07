@@ -6,7 +6,9 @@ const findEntries = (query: string, source: string): number[] => source
     .split(query)
     .map(
         function (culm) {
-            return this.position += culm.length + query.length;
+
+            const context = this;
+            return context.position += culm.length + query.length;
         },
         { position: -query.length }
     )

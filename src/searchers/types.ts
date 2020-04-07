@@ -1,4 +1,4 @@
-import { SearchState } from './searcher.class';
+import { SearchState } from './Searcher.class';
 import { ArticleType } from '../types';
 
 export type SearchStateType = 'inside' | 'outside';

@@ -20,17 +20,31 @@ export class Searcher implements ISearchContext {
         return this._query[this._letterIndex];
     }
 
+    public get letterIndex(): number {
+        return this._letterIndex;
+    }
+
     public set letterIndex(value: number) {
         if (isFinite(value) && typeof value === 'number') {
             this._letterIndex = value;
         }
     }
 
+    public get draft(): string {
+        return this._draft;
+    }
+
     public set draft(value: string) {
+        debugger;
         if (typeof value === 'string') {
             this._draft = value;
         }
     }
+
+    public get counter(): number {
+        return this._counter;
+    }
+
     public set counter(value: number) {
         if (isFinite(value) && typeof value === 'number') {
             this._counter = value;
@@ -59,7 +73,7 @@ export class Searcher implements ISearchContext {
         this._result.push(handledDraft, <>{symbol}</>);
     }
 
-    public isQueryFound(): boolean {
+    public isQueryCompletelyFound(): boolean {
         return this._draft.length === this._query.length;
     }
 
@@ -120,7 +134,7 @@ class SearchInsideState extends SearchState {
             this.addToDraft(symbol);
             return;
         }
-        if (this.context.isQueryFound()) {
+        if (this.context.isQueryCompletelyFound()) {
             this.context.addDraftToResult(symbol, true);
             this.context.counter++;
         } else {

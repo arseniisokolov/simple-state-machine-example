@@ -7,7 +7,7 @@ import { SearchFormPropsType } from '../types';
 
 export const SearchForm: React.FC<SearchFormPropsType> = ({ article, onUpdateArticle, searchBy, mix, caption }) => {
 
-    const [[count, time], updateStatistics] = useState([null, null]);
+    const [[count, time], updateStatistics] = useState<[number | null, number | null]>([null, null]);
     const updateArticleByFunctional = useSearch(onUpdateArticle, updateStatistics, article, searchBy);
     const [value, onUpdate] = useDebounce(updateArticleByFunctional);
 

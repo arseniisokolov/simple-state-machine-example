@@ -1,20 +1,41 @@
 {
     "compilerOptions": {
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "module": "es6",
-        // Search under node_modules for non-relative imports.
-        "moduleResolution": "node",
         "target": "esnext",
-        "jsx": "react",
-        // Import non-ES modules as default imports.
+        "outDir": "./dist/",
+        "strictNullChecks": false,
+        "moduleResolution": "node",
+        "allowJs": false,
+        "noEmit": true,
+        "strict": false,
         "esModuleInterop": true,
-        // enable strict null checks as a best practice
-        "strictNullChecks": true,
-        // Process & infer types from .js files.
-        "allowJs": true
+        "jsx": "react",
+        "baseUrl": "./src",
+        "lib": [
+            "es2015",
+            "dom.iterable",
+            "es2016.array.include",
+            "es2017.object",
+            "dom"
+        ],
+        "module": "es6",
+        "removeComments": true,
+        "alwaysStrict": true,
+        "allowUnreachableCode": false,
+        "noImplicitAny": false,
+        "noImplicitThis": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "resolveJsonModule": true,
     },
     "include": [
-        "./src/**/*"
+        "./src/**/*.*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/node_modules/*"
     ]
 }
