@@ -16,11 +16,8 @@ export const searchFunctionally = (query, source, highlightCallback) => {
         return [0, source];
     }
 
-    const formattedArticle = entries
-        .reduce((acc, [start, end], index) =>
-            [...acc, source.slice(entries[index - 1] ? entries[index - 1][1] : 0, start), highlightCallback(source.slice(start, end))],
-            [])
-        .concat([source.slice(entries[entries.length - 1][1])]);
+    const reducer = (acc, [start, end], index) => [...acc, source.slice(entries[index - 1] ? entries[index - 1][1] : 0, start), highlightCallback(source.slice(start, end))];
+    const tale = source.slice(entries[entries.length - 1][1]);
 
-    return [entries.length, formattedArticle];
+    return [entries.length, [...entries.reduce(reducer, []), tale]];
 }

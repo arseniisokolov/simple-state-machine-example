@@ -7,14 +7,14 @@ import { generateBemCls } from '../../bricks-ui/utils';
 export const SearchForm = ({ article, onUpdateArticle, searchBy, mix, caption }) => {
 
     const [[count, time], updateStatistics] = useState([null, null]);
-    const updateArticleByFunctional = useSearch(onUpdateArticle, updateStatistics, article, searchBy);
-    const [value, onUpdate] = useDebounce(updateArticleByFunctional);
+    const searchInArticle = useSearch(onUpdateArticle, updateStatistics, article, searchBy);
+    const [value, onUpdate] = useDebounce(searchInArticle);
 
     const formCls = generateBemCls({ block: 'searchform', mix });
 
     const statisticsMessage = [
-        isFinite(count) && typeof count === 'number' && `Найдено: ${count}`,
-        isFinite(count) && typeof count === 'number' && `Поиск занял: ${time} мс`
+        typeof count === 'number' && count !== NaN && `Найдено: ${count}`,
+        typeof count === 'number' && count !== NaN && `Поиск занял: ${time} мс`
     ].filter(Boolean).join('. ');
 
     return (

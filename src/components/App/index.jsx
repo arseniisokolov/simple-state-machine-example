@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SearchForm } from '../SearchForm';
 import { searchFunctionally } from '../../searchers/functionalSearcher';
 import { searchByStateMachine } from '../../searchers/stateMachineSearcher';
-import { Searcher } from '../../searchers/searcher.class';
+import { Searcher } from '../../searchers/Searcher.class';
 import { ARTICLE_EXAMPLE } from '../../constants';
 
 export const App = () => {
