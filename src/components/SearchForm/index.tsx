@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Input, ControlWrapper, Icons, Icon } from '../../bricks-ui';
-import { useDebounce } from '../../hooks/useDebounce';
-import { useSearch } from '../../hooks/useSearch';
+import { useDebounce } from '../../hooks/useDebounce.ts';
+import { useSearch } from '../../hooks/useSearch.tsx';
 import { generateBemCls } from '../../bricks-ui/utils';
+import { SearchFormPropsType } from '../types.ts';
 
-export const SearchForm = ({ article, onUpdateArticle, searchBy, mix, caption }) => {
+export const SearchForm: React.FC<SearchFormPropsType> = ({ article, onUpdateArticle, searchBy, mix, caption }) => {
 
     const [[count, time], updateStatistics] = useState([null, null]);
     const updateArticleByFunctional = useSearch(onUpdateArticle, updateStatistics, article, searchBy);
-    const [value, onUpdate] = useDebounce(updateArticleByFunctional);
+    const [value, onUpdate] = useDebounce<string>(updateArticleByFunctional);
 
     const formCls = generateBemCls({ block: 'searchform', mix });
 

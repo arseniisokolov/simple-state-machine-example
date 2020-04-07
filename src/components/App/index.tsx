@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { SearchForm } from '../SearchForm';
-import { searchFunctionally } from '../../searchers/functionalSearcher';
-import { searchByStateMachine } from '../../searchers/stateMachineSearcher';
+import { SearchForm } from '../SearchForm/index.tsx';
+import { searchFunctionally } from '../../searchers/functionalSearcher.ts';
+import { searchByStateMachine } from '../../searchers/stateMachineSearcher.ts';
 import { Searcher } from '../../searchers/searcher.class.ts';
-import { ARTICLE_EXAMPLE } from '../../constants';
+import { ARTICLE_EXAMPLE } from '../../constants.ts';
 
-export const App = () => {
+export const App: React.FC = () => {
 
   const [highligtedArticle, highlightArticle] = useState<[string, (v: string) => string]>();
 

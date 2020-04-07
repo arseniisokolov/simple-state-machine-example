@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { HighlightedPhrase } from '../components/HighlightedPhrase';
+import { HighlightedPhrase } from '../components/HighlightedPhrase/index.tsx';
+import { SearcherType } from '../searchers/types.ts';
+import { ArticleType } from '../types';
 
-export const useSearch = (updateArticle, updateStatistics, source, searchBy) => {
+export const useSearch = (updateArticle: (v: ArticleType) => void, updateStatistics: (v: [number, number]) => void, source: string, searchBy: SearcherType) => {
     const [query, updateQuery] = useState('');
 
-    const formatFloat = value => Math.floor(value * 100) / 100;
+    const formatFloat = (value: number): number => Math.floor(value * 100) / 100;
 
-    const highlightPhrase = (value) => <HighlightedPhrase phrase={value} />;
+    const highlightPhrase = (value: string): JSX.Element => <HighlightedPhrase phrase={value} />;
 
     const dropSearch = () => {
         updateArticle(source);

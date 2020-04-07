@@ -10,7 +10,7 @@ export const getIconsSvgArray = () => {
 
 export const capitalizeString = str => str.charAt(0).toUpperCase() + str.slice(1);
 
-export const generateBemCls = ({ block = '', elem = '', mods = {}, mix = '', asMix }) => {
+export const generateBemCls = ({ block = '', elem = '', mods = {}, mix = '', asMix = false }) => {
     const blockOrElem = elem ? `${block}__${elem}` : block;
     const handledMods = [];
 

@@ -1,13 +1,13 @@
-import { ISearchContext } from '../types';
+import { ISearchContext } from './types';
 
 export class Searcher implements ISearchContext {
 
     public static search(query: string, source: string, highlightCallback: (v: string) => JSX.Element): [number, JSX.Element[]] {
-        return new Searcher(new StateOutside(), query, source, highlightCallback).runSearch();
+        return new Searcher(new SearchOutsideState(), query, source, highlightCallback).runSearch();
     }
 
     public _result = [];
-    private _state: State;
+    private _state: SearchState;
     private _letterIndex = 0;
     private _draft = '';
     private _counter = 0;
@@ -36,14 +36,14 @@ export class Searcher implements ISearchContext {
         }
     }
 
-    private constructor(state: State, query: string, source: string, highlightCallback: (v: string) => JSX.Element) {
+    private constructor(state: SearchState, query: string, source: string, highlightCallback: (v: string) => JSX.Element) {
         this._query = query;
         this._source = source;
         this._highlightCallback = highlightCallback;
         this.switchStateTo(state);
     }
 
-    public switchStateTo(state: State) {
+    public switchStateTo(state: SearchState) {
         this._state = state;
         this._state.setContext(this);
     }
@@ -77,7 +77,7 @@ export class Searcher implements ISearchContext {
 
 }
 
-abstract class State {
+export abstract class SearchState {
 
     protected context: Searcher;
 
@@ -99,12 +99,12 @@ abstract class State {
 
 }
 
-class StateOutside extends State {
+class SearchOutsideState extends SearchState {
 
     public handleSymbol(symbol: string) {
         if (this.context.isFirstSymbol(symbol)) {
             this.addToDraft(symbol);
-            this.context.switchStateTo(new StateInside());
+            this.context.switchStateTo(new SearchInsideState());
             return;
         }
         this.context.addToResult(symbol);
@@ -112,7 +112,7 @@ class StateOutside extends State {
 
 }
 
-class StateInside extends State {
+class SearchInsideState extends SearchState {
 
     public handleSymbol(symbol: string) {
         if (symbol === this.context.currentQueryLetter) {
@@ -126,7 +126,7 @@ class StateInside extends State {
             this.context.addDraftToResult(symbol, false);
         }
         this.dropDraft();
-        this.context.switchStateTo(new StateOutside());
+        this.context.switchStateTo(new SearchOutsideState());
     }
 
 }
