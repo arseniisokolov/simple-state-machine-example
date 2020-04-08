@@ -7,6 +7,16 @@ export const searchByStateMachine: SearcherType = (query, article) => {
     let foundCandidate = '';
     let letterIndex = 0;
 
+    const addToCandidate = (symbol: string) => {
+        foundCandidate += symbol;
+        letterIndex++;
+    };
+
+    const dropCandidate = () => {
+        foundCandidate = '';
+        letterIndex = 0;
+    };
+
     const switchState = (newState: SearchStateType) => state = newState;
 
     for (let i = 0; i < article.length; i++) {
@@ -15,8 +25,7 @@ export const searchByStateMachine: SearcherType = (query, article) => {
         switch (state) {
             case 'outside':
                 if (symbol === query[0]) {
-                    foundCandidate += symbol;
-                    letterIndex++;
+                    addToCandidate(symbol);
                     switchState('inside');
                     continue;
                 }
@@ -26,23 +35,19 @@ export const searchByStateMachine: SearcherType = (query, article) => {
                 if (foundCandidate === query) {
                     result.push(articlePart);
                     articlePart = symbol;
-                    foundCandidate = '';
-                    letterIndex = 0;
+                    dropCandidate();
                     switchState('outside');
                 }
                 if (symbol === query[letterIndex]) {
-                    foundCandidate += symbol;
-                    letterIndex++;
+                    addToCandidate(symbol);
                     continue;
                 }
                 articlePart += foundCandidate;
-                foundCandidate = '';
-                letterIndex = 0;
+                dropCandidate();
                 switchState('outside');
                 break;
         }
     }
-    console.log(result);
 
     return result.length ? result : [article];
 }
