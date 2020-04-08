@@ -33,7 +33,6 @@ export class Searcher implements ISearchContext {
     }
 
     public set FoundCandidate(value: string) {
-        debugger;
         if (typeof value === 'string') {
             this._foundCandidate = value;
         }

@@ -5,10 +5,17 @@ import { searchByStateMachine } from '../../searchers/stateMachineSearcher';
 import { Searcher } from '../../searchers/Searcher.class';
 import { ARTICLE_EXAMPLE } from '../../constants';
 import { ArticleType } from '../../types';
+import { SearcherType } from '../../searchers/types';
 
 export const App: React.FC = () => {
 
   const [highligtedArticle, highlightArticle] = useState<ArticleType>();
+
+  const FORMS_CONFIG: [string, SearcherType][] = [
+    ['Ищем в функциональной парадигме', searchFunctionally],
+    ['Ищем с помощью конечного автомата', searchByStateMachine],
+    ['Ищем с помощью ООП', Searcher.search],
+  ];
 
   return (
     <>
@@ -19,27 +26,18 @@ export const App: React.FC = () => {
 
       <main className='page__main'>
         <div className='page__search-container'>
-          <SearchForm
-            caption='Ищем в функциональной парадигме'
-            article={ARTICLE_EXAMPLE}
-            onUpdateArticle={highlightArticle}
-            searchBy={searchFunctionally}
-            mix='page__searchform'
-          />
-          <SearchForm
-            caption='Ищем с помощью конечного автомата'
-            article={ARTICLE_EXAMPLE}
-            onUpdateArticle={highlightArticle}
-            searchBy={searchByStateMachine}
-            mix='page__searchform'
-          />
-          <SearchForm
-            caption='Ищем с помощью ООП'
-            article={ARTICLE_EXAMPLE}
-            onUpdateArticle={highlightArticle}
-            searchBy={Searcher.search}
-            mix='page__searchform'
-          />
+          {
+            FORMS_CONFIG.map(([caption, searchBy]) => (
+              <SearchForm
+                key={caption}
+                caption={caption}
+                article={ARTICLE_EXAMPLE}
+                onUpdateArticle={highlightArticle}
+                searchBy={searchBy}
+                mix='page__searchform'
+              />
+            ))
+          }
         </div>
         <article className='page__article article'>
           {highligtedArticle}
