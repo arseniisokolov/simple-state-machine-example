@@ -1,44 +1,48 @@
 import { SearcherType, SearchStateType } from "./types";
 
-export const searchByStateMachine: SearcherType = (query, source) => {
+export const searchByStateMachine: SearcherType = (query, article) => {
     const result: string[] = [];
-    let state = 'beforeEnd' as SearchStateType;
+    let state = 'inside' as SearchStateType;
     let articlePart = '';
     let foundCandidate = '';
     let letterIndex = 0;
 
     const switchState = (newState: SearchStateType) => state = newState;
 
-    for (let i = 0; i < source.length; i++) {
-        const symbol: string = source[i];
+    for (let i = 0; i < article.length; i++) {
+        const symbol: string = article[i];
 
         switch (state) {
-            case 'beforeEnd':
+            case 'outside':
                 if (symbol === query[0]) {
-                    articlePart += symbol;
-                    letterIndex++;
                     foundCandidate += symbol;
+                    letterIndex++;
+                    switchState('inside');
                     continue;
-                }
-                if (symbol !== query[letterIndex]) {
-
-                }
-                if (foundCandidate.length === query.length) {
-
-                    switchState('beforeEnd');
                 }
                 articlePart += symbol;
                 break;
             case 'inside':
+                if (foundCandidate === query) {
+                    result.push(articlePart);
+                    articlePart = symbol;
+                    foundCandidate = '';
+                    letterIndex = 0;
+                    switchState('outside');
+                }
                 if (symbol === query[letterIndex]) {
+                    foundCandidate += symbol;
                     letterIndex++;
                     continue;
                 }
-                addToDraft(symbol);
+                articlePart += foundCandidate;
+                foundCandidate = '';
+                letterIndex = 0;
                 switchState('outside');
                 break;
         }
     }
+    console.log(result);
 
-    return result;
+    return result.length ? result : [article];
 }

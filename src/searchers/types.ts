@@ -1,7 +1,7 @@
 // import { SearchState } from './Searcher.class';
 // import { ArticleType } from '../types';
 
-export type SearchStateType = 'beforeEnd' | 'afterEnd';
+export type SearchStateType = 'inside' | 'outside';
 
 export type SearcherType = (query: string, article: string) => string[];
 
