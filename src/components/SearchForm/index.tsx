@@ -3,16 +3,17 @@ import { Input, ControlWrapper, Icons, Icon } from '../../bricks-ui';
 import { useDebounce } from '../../hooks/useDebounce';
 import { useSearch } from '../../hooks/useSearch';
 import { generateBemCls } from '../../bricks-ui/utils';
+import { SearchFormPropsType } from '../types';
 
-export const SearchForm = ({ article, onUpdateArticle, searchBy, mix, caption }) => {
+export const SearchForm: React.FC<SearchFormPropsType> = ({ article, onUpdateArticle, searchBy, mix, caption }) => {
 
-    const [[count, time], updateStatistics] = useState([null, null]);
+    const [[count, time], updateStatistics] = useState<[number | null, number | null]>([null, null]);
     const searchInArticle = useSearch(onUpdateArticle, updateStatistics, article, searchBy);
     const [value, onUpdate] = useDebounce(searchInArticle);
 
-    const formCls = generateBemCls({ block: 'searchform', mix });
+    const formCls: string = generateBemCls({ block: 'searchform', mix });
 
-    const statisticsMessage = [
+    const statisticsMessage: string = [
         typeof count === 'number' && count !== NaN && `Найдено: ${count}`,
         typeof count === 'number' && count !== NaN && `Поиск занял: ${time} мс`
     ].filter(Boolean).join('. ');

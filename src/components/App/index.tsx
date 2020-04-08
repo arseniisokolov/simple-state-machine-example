@@ -4,10 +4,11 @@ import { searchFunctionally } from '../../searchers/functionalSearcher';
 import { searchByStateMachine } from '../../searchers/stateMachineSearcher';
 import { Searcher } from '../../searchers/Searcher.class';
 import { ARTICLE_EXAMPLE } from '../../constants';
+import { ArticleType } from '../../types';
 
-export const App = () => {
+export const App: React.FC = () => {
 
-  const [highligtedArticle, highlightArticle] = useState();
+  const [highligtedArticle, highlightArticle] = useState<ArticleType>();
 
   return (
     <>
