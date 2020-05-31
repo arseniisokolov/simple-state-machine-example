@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "esnext",
-        "outDir": "./dist/",
+        "outDir": "./public/",
         "strictNullChecks": false,
         "moduleResolution": "node",
         "allowJs": false,

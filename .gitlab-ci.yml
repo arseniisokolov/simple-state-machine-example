@@ -1,0 +1,7 @@
+pages:
+  script:
+    - yarn install
+    - yarn build
+  artifacts:
+    paths:
+      - public
